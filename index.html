@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PUSTAKA ABADI – Toko Buku Online</title>
+<meta name="description" content="PUSTAKA ABADI: toko buku online menyediakan fiksi, non-fiksi, pelajaran, anak-anak, dan buku bekas berkualitas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f172a; --card:#111827; --muted:#94a3b8; --text:#e5e7eb;
+  --brand:#38bdf8; --brand-2:#22d3ee; --accent:#f59e0b; --ring:0 0 0 3px rgba(56,189,248,.35);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;background:linear-gradient(180deg,#0b1222,#0f172a 30%,#0b1222);color:var(--text)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block;border-radius:14px}
+.container{width:min(1100px,92%);margin-inline:auto}
+.btn{display:inline-block;padding:.85rem 1.2rem;border-radius:14px;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#00111a;font-weight:700;box-shadow:0 10px 25px rgba(34,211,238,.18);transition:transform .15s ease,box-shadow .2s ease;cursor:pointer}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(34,211,238,.28)}
+.btn.outline{background:transparent;border:2px solid rgba(148,163,184,.35);color:var(--text)}
+.tag{display:inline-flex;gap:.5rem;align-items:center;padding:.35rem .7rem;border-radius:999px;border:1px solid rgba(148,163,184,.25);color:var(--muted);font-size:.8rem}
+nav{position:sticky;top:0;z-index:50;background:rgba(15,23,42,.85);backdrop-filter: blur(10px);border-bottom:1px solid rgba(148,163,184,.12)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:.8rem 0}
+.brand{font-weight:800;letter-spacing:.3px}
+.brand span{background:linear-gradient(135deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.menu{display:flex;gap:1rem;align-items:center}
+.menu a{padding:.6rem .8rem;border-radius:10px;color:var(--muted)}
+.menu a:hover{color:var(--text);background:rgba(148,163,184,.12)}
+#burger{display:none}
+@media (max-width:860px){
+  #burger{display:block}
+  .menu{display:none}
+  .menu.open{display:flex;flex-direction:column;position:absolute;top:60px;right:4%;left:4%;background:#0b1222;border:1px solid rgba(148,163,184,.15);border-radius:16px;padding:8px}
+  .menu.open a{width:100%}
+}
+header.hero{position:relative;overflow:hidden}
+.hero .inner{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center;padding:3.5rem 0}
+.hero h1{font-size:clamp(26px,4.5vw,48px);line-height:1.15;margin:0 0 .8rem}
+.hero p{color:var(--muted);margin:0 0 1.4rem}
+.hero .card{background:linear-gradient(180deg,#0e1529,rgba(17,24,39,.6));border:1px solid rgba(148,163,184,.15);border-radius:22px;padding:1rem}
+.hero figure{position:relative}
+.glow{position:absolute;inset:auto -15% -15% -15%;height:50%;filter:blur(60px);background:radial-gradient(60% 70% at 50% 50%,rgba(56,189,248,.35),transparent 70%)}
+@media (max-width:860px){.hero .inner{grid-template-columns:1fr}}
+section{padding:3rem 0}
+.section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem}
+.section-title h2{font-size:clamp(20px,3.5vw,34px);margin:0}
+.muted{color:var(--muted)}
+.grid{display:grid;gap:1rem}
+.grid.cols-3{grid-template-columns:repeat(3,1fr)}
+.grid.cols-2{grid-template-columns:repeat(2,1fr)}
+@media (max-width:860px){
+  .grid.cols-3,.grid.cols-2{grid-template-columns:1fr}
+}
+.card{background:linear-gradient(180deg,#0e1529,rgba(17,24,39,.6));border:1px solid rgba(148,163,184,.15);border-radius:20px;padding:1rem;position:relative}
+.card h3{margin:.2rem 0 .6rem;font-size:1.05rem}
+.card button{margin-top:.6rem;width:100%}
+footer{border-top:1px solid rgba(148,163,184,.12);padding:2rem 0;color:var(--muted)}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease}
+.reveal.show{opacity:1;transform:none}
+
+/* Modal */
+.modal{display:none;position:fixed;z-index:999;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;padding:1rem}
+.modal .modal-content{background:var(--card);border-radius:20px;padding:1.5rem;max-width:500px;width:100%;position:relative}
+.modal .close{position:absolute;top:.5rem;right:.5rem;font-size:1.2rem;background:none;border:none;color:var(--text);cursor:pointer}
+.modal img{border-radius:14px;margin-bottom:1rem;width:100%;height:auto;}
+.modal h3{margin-top:0;}
+/* 🔥 Foto produk ukuran seragam */
+#product-list .card img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  border-radius: 14px;
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <div class="container wrap">
+    <div class="brand">PUSTAKA <span>ABADI</span></div>
+    <button id="burger" class="btn outline">Menu</button>
+    <div id="menu" class="menu">
+      <a href="#beranda">Beranda</a>
+      <a href="#toko">Toko</a>
+      <a href="#keranjang">Keranjang</a>
+      <a href="#kontak">Kontak</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header id="beranda" class="hero">
+  <div class="container inner">
+    <div>
+      <span class="tag">📚 Toko Buku Online • Surakarta</span>
+      <h1>PUSTAKA ABADI<br><span style="color:var(--brand)">Buku Berkualitas</span> untuk Semua</h1>
+      <p>Tersedia buku fiksi, non-fiksi, pelajaran, anak-anak, dan koleksi bekas dengan harga terjangkau. Nikmati kemudahan belanja online dan pengiriman cepat.</p>
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+        <a class="btn" href="#toko">Lihat Buku</a>
+        <a class="btn outline" href="#keranjang">Keranjang</a>
+      </div>
+    </div>
+    <figure class="card">
+      <img src="WhatsApp Image 2025-08-12 at 11.25.28_e07fa814.jpg" alt="Toko Buku">
+      <div class="glow" aria-hidden="true"></div>
+    </figure>
+  </div>
+</header>
+
+<!-- Toko Buku -->
+<section id="toko">
+  <div class="container">
+    <div class="section-title">
+      <h2>Daftar Buku</h2>
+      <span class="muted">Pilih dan tambahkan ke keranjang</span>
+    </div>
+    <div class="grid cols-3" id="product-list">
+      <!-- Buku otomatis di JS -->
+    </div>
+  </div>
+</section>
+
+<!-- Keranjang -->
+<section id="keranjang">
+  <div class="container">
+    <div class="section-title">
+      <h2>Keranjang Belanja</h2>
+      <span class="muted">Cek buku yang akan dibeli</span>
+    </div>
+    <div class="card reveal">
+      <ul id="cart-items" style="list-style:none;padding:0;margin:0"></ul>
+      <div style="display:flex;gap:.6rem;margin-top:.6rem">
+        <button class="btn" id="checkout">Checkout</button>
+        <button class="btn outline" id="reset-cart">Reset Keranjang</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Kontak -->
+<section id="kontak">
+  <div class="container">
+    <div class="section-title">
+      <h2>Kontak</h2>
+      <span class="muted">Hubungi kami untuk pertanyaan</span>
+    </div>
+    <form class="card reveal" onsubmit="event.preventDefault();alert('Terima kasih! Pesan Anda sudah direkam.');this.reset();">
+      <h3>Kirim Pesan</h3>
+      <label class="muted">Nama<br><input required placeholder="Nama lengkap" style="width:100%;padding:.8rem;border-radius:12px;border:1px solid rgba(148,163,184,.25);background:#0b1222;color:var(--text)"></label>
+      <div style="height:.6rem"></div>
+      <label class="muted">Email/No. WA<br><input required placeholder="email@contoh.com / 08xxx" style="width:100%;padding:.8rem;border-radius:12px;border:1px solid rgba(148,163,184,.25);background:#0b1222;color:var(--text)"></label>
+      <div style="height:.6rem"></div>
+      <label class="muted">Pesan<br><textarea required rows="4" placeholder="Tulis pertanyaan atau keperluan Anda" style="width:100%;padding:.8rem;border-radius:12px;border:1px solid rgba(148,163,184,.25);background:#0b1222;color:var(--text)"></textarea></label>
+      <div style="height:.8rem"></div>
+      <button class="btn" type="submit">Kirim</button>
+    </form>
+  </div>
+</section>
+
+<!-- Modal Detail Buku -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <button class="close" id="closeModal">&times;</button>
+    <img id="modal-img" src="" alt="">
+    <h3 id="modal-title"></h3>
+    <p id="modal-desc"></p>
+    <p><b>Harga:</b> Rp <span id="modal-price"></span></p>
+    <button class="btn" id="modal-add">Tambah ke Keranjang</button>
+  </div>
+</div>
+
+<footer>
+  <div class="container" style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between">
+    <div class="muted">© <span id="year"></span> PUSTAKA ABADI. Semua hak cipta.</div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+      <a class="tag" href="#beranda">⬆ Kembali ke atas</a>
+      <span class="tag">Made with ♥</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Burger menu
+const burger=document.getElementById('burger');
+const menu=document.getElementById('menu');
+burger?.addEventListener('click',()=>menu.classList.toggle('open'));
+
+// Year
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Scroll reveal
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('show');});},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Data Buku
+const books=[
+  {title:"Belajar Mewarnai",price:10000,desc:"Buku ini dirancang untuk melatih kreativitas dan motorik halus anak dengan berbagai gambar menarik yang bisa diwarnai. Anak dapat mengenal warna sekaligus mengekspresikan imajinasi mereka.",img:"WhatsApp Image 2025-09-16 at 13.23.58_9ef25ccc.jpg"},
+  {title:"Belajar Membaca",price:10000,desc:"Buku ini membantu anak mengenal huruf, suku kata, hingga kata sederhana. Disusun secara bertahap agar anak mudah memahami dan tertarik belajar membaca.",img:"WhatsApp Image 2025-09-16 at 14.09.36_59c24684.jpg"},
+  {title:"Belajar Menulis",price:10000,desc:"Buku ini melatih anak menulis huruf dan angka dengan cara yang menyenangkan. Dilengkapi latihan menebalkan garis hingga menulis kata sederhana agar anak terbiasa menulis dengan rapi.",img:"WhatsApp Image 2025-09-16 at 14.05.34_889491a6.jpg"},
+  {title:"Buku Anak Islam Suka Membaca",price:15000,desc:"Buku ini berisi bacaan ringan yang memperkenalkan nilai-nilai Islam kepada anak. Dengan cerita singkat dan ilustrasi menarik, anak diajak gemar membaca sekaligus belajar akhlak baik.",img:"WhatsApp Image 2025-09-16 at 13.25.49_0eb80c31.jpg"},
+  {title:"Cerita Si Kancil",price:15000,desc:"Kumpulan cerita rakyat tentang Si Kancil yang cerdik. Cerita-cerita ini mengandung pesan moral seperti kejujuran, kecerdikan, dan pentingnya berbuat baik.",img:"WhatsApp Image 2025-09-16 at 13.44.47_680a207c.jpg"},
+  {title:"Kisah 25 Nabi dan Rasul",price:20000,desc:"Buku ini menyajikan kisah para nabi dan rasul dengan bahasa sederhana yang mudah dipahami anak. Dilengkapi ilustrasi menarik untuk menumbuhkan kecintaan pada kisah teladan umat Islam.",img:"WhatsApp Image 2025-09-16 at 13.55.33_c20d0e7b.jpg"}
+];
+
+const productList=document.getElementById('product-list');
+const cartItems=document.getElementById('cart-items');
+let cart=[];
+
+// Render Buku
+function renderBooks(){
+  productList.innerHTML="";
+  books.forEach((b,i)=>{
+    const div=document.createElement('div');
+    div.className="card reveal";
+    div.innerHTML=`
+      <img src="${b.img}" alt="${b.title}" onclick="openModal(${i})">
+      <h3>${b.title}</h3>
+      <p class="muted">Rp ${b.price.toLocaleString()}</p>
+      <button class="btn" onclick="addToCart(${i})">Tambah ke Keranjang</button>
+    `;
+    productList.appendChild(div);
+    io.observe(div);
+  });
+}
+
+// Render Keranjang
+function renderCart(){
+  cartItems.innerHTML="";
+  if(cart.length===0){cartItems.innerHTML="<li class='muted'>Keranjang kosong</li>"; return;}
+  cart.forEach((b,i)=>{
+    const li=document.createElement('li');
+    li.style.padding=".5rem 0";
+    li.textContent = `${b.title} - Rp ${b.price.toLocaleString()} x${b.qty}`;
+    cartItems.appendChild(li);
+  });
+}
+
+// Tambah ke Keranjang
+function addToCart(index){
+  const existing = cart.find(item => item.title===books[index].title);
+  if(existing){existing.qty++;} else {cart.push({...books[index],qty:1});}
+  renderCart();
+  alert(`${books[index].title} berhasil ditambahkan ke keranjang!`);
+}
+
+// Reset
+document.getElementById('reset-cart').addEventListener('click',()=>{if(confirm("Yakin ingin mengosongkan keranjang?")){cart=[];renderCart();}});
+
+// Checkout
+document.getElementById('checkout').addEventListener('click',()=>{
+  if(cart.length===0){alert("Keranjang masih kosong!"); return;}
+  let total = cart.reduce((sum,b)=>sum + b.price*b.qty,0);
+  alert(`Total belanja: Rp ${total.toLocaleString()}\nTerima kasih telah berbelanja di PUSTAKA ABADI!`);
+  cart=[]; renderCart();
+});
+
+// Modal
+const modal=document.getElementById('modal');
+const modalImg=document.getElementById('modal-img');
+const modalTitle=document.getElementById('modal-title');
+const modalDesc=document.getElementById('modal-desc');
+const modalPrice=document.getElementById('modal-price');
+const modalAdd=document.getElementById('modal-add');
+let modalIndex=null;
+
+function openModal(i){
+  modalIndex=i;
+  modal.style.display='flex';
+  modalImg.src=books[i].img;
+  modalTitle.textContent=books[i].title;
+  modalDesc.textContent=books[i].desc;
+  modalPrice.textContent=books[i].price.toLocaleString();
+}
+document.getElementById('closeModal').addEventListener('click',()=>modal.style.display='none');
+modalAdd.addEventListener('click',()=>{addToCart(modalIndex); modal.style.display='none';});
+
+// Init
+renderBooks(); renderCart();
+</script>
+
+</body>
+</html>
